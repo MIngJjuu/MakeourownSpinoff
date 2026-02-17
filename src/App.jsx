@@ -1,9 +1,10 @@
 import React from 'react';
-import { Instagram } from 'lucide-react';
+import './App.css';
 
 function App() {
   const handleInstagramClick = () => {
-    window.open('https://www.instagram.com/makeurownspinoff?igsh=MThybXJtcTgwdW9ycw%3D%3D', '_blank');
+    // 실제 인스타그램 링크로 변경해주세요
+    window.open('https://www.instagram.com/your_spinoff_account', '_blank');
   };
 
   const handleNavigation = (page) => {
@@ -12,53 +13,47 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      {/* Header / Navigation */}
-      <header className="bg-black text-white py-4 px-6 flex items-center justify-between">
-        {/* 왼쪽: 로고/홈 버튼 */}
-        <div 
-          onClick={() => handleNavigation('main')}
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-        >
-          <div className="bg-white text-black px-4 py-2 rounded-full font-bold text-lg">
-            SPINOFF
-          </div>
-        </div>
-
-        {/* 중앙: 네비게이션 메뉴 */}
-        <nav className="flex gap-12 text-lg">
-          <button 
-            onClick={() => handleNavigation('about')}
-            className="hover:text-gray-300 transition-colors"
+    <div className="layout">
+      {/* 상단 네비게이션 바 */}
+      <nav className="navbar">
+        {/* 메뉴 */}
+        <div className="menu">
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavigation('about'); }}
+            className="menu-item"
           >
             About Us
-          </button>
-          <button 
-            onClick={() => handleNavigation('gathering')}
-            className="hover:text-gray-300 transition-colors"
+          </a>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavigation('gathering'); }}
+            className="menu-item"
           >
             Gathering
-          </button>
-          <button 
-            onClick={() => handleNavigation('apply')}
-            className="hover:text-gray-300 transition-colors"
+          </a>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavigation('apply'); }}
+            className="menu-item"
           >
             Apply
-          </button>
-        </nav>
+          </a>
+        </div>
 
-        {/* 오른쪽: 인스타그램 아이콘 */}
-        <button
-          onClick={handleInstagramClick}
-          className="hover:opacity-80 transition-opacity"
-        >
-          <Instagram size={32} className="text-pink-500" />
-        </button>
-      </header>
+        {/* 인스타그램 아이콘 */}
+        <div className="instagram-link">
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+            alt="Instagram"
+            onClick={handleInstagramClick}
+          />
+        </div>
+      </nav>
 
-      {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center">
-        <h1 className="text-6xl font-bold text-gray-800 text-center leading-tight">
+      {/* 메인 영역 */}
+      <main className="main">
+        <h1 className="main-title">
           Make our<br />
           Own Spinoff!
         </h1>
