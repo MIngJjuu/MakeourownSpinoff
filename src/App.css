@@ -1,0 +1,61 @@
+/* 전체 레이아웃 */
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 네비게이션 바 */
+.navbar {
+  height: 72px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 메뉴 */
+.menu {
+  display: flex;
+  gap: 80px;
+}
+
+.menu-item {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+}
+
+/* 인스타그램 아이콘 */
+.instagram-link {
+  position: absolute;
+  right: 32px;
+}
+
+.instagram-link img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* 메인 영역 */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 메인 문구 */
+.main-title {
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
