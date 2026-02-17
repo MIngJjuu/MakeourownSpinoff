@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-function Gathering() {
+function Apply() {
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/your_spinoff_account', '_blank');
   };
@@ -27,11 +27,11 @@ function Gathering() {
       </nav>
 
       <main className="main">
-        <h1>Gathering</h1>
-        {/* 여기에 Gathering 내용 추가 */}
+        <h1>Apply</h1>
+        {/* 여기에 Apply 내용 추가 */}
       </main>
     </div>
   );
 }
 
-export default Gathering;
+export default Apply;

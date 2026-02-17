@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-function Gathering() {
+function AboutUs() {
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/your_spinoff_account', '_blank');
   };
@@ -27,11 +27,11 @@ function Gathering() {
       </nav>
 
       <main className="main">
-        <h1>Gathering</h1>
-        {/* 여기에 Gathering 내용 추가 */}
+        <h1>About Us</h1>
+        {/* 여기에 About Us 내용 추가 */}
       </main>
     </div>
   );
 }
 
-export default Gathering;
+export default AboutUs;
