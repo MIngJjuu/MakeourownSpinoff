@@ -8,11 +8,15 @@
 /* 상단 네비게이션 바 */
 .navbar {
   height: 72px;
+  width: 100%;
   background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 /* 메뉴 */
@@ -22,7 +26,7 @@
 }
 
 .menu-item {
-  color: white;
+  color: white;  /* black에서 white로 변경 */
   text-decoration: none;
   font-size: 20px;
   font-weight: 500;
@@ -50,6 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 72px; /* 네비게이션 바 높이만큼 여백 */
 }
 
 /* 메인 문구 */
@@ -58,4 +63,6 @@
   font-weight: 700;
   text-align: center;
   line-height: 1.2;
+  margin: 0 auto;
+  width: 100%;
 }
