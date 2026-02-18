@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #F4F4F4; 
 }
 
 /* 상단 네비게이션 바 */
@@ -33,7 +34,7 @@
 }
 
 .menu-item:hover {
-  text-decoration: underline;
+  color: #e74c3c;
 }
 
 /* 인스타그램 아이콘 */
@@ -46,6 +47,12 @@
   width: 28px;
   height: 28px;
   cursor: pointer;
+  transition: opacity 0.3s; 
+}
+
+/* hover 효과 추가 */
+.instagram-link img:hover {
+  opacity: 0.8;
 }
 
 /* 메인 영역 */

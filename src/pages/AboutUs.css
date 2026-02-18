@@ -1,0 +1,229 @@
+/* About Us 페이지 스타일 */
+.about-main {
+  flex: 1;
+  padding-top: 72px;
+  overflow-y: auto;
+}
+
+/* 4분할 그리드 레이아웃 */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: calc(100vh - 72px);
+  gap: 0;
+}
+
+/* 각 사분면 공통 스타일 */
+.quadrant {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* 1사분면: 동아리 소개글 (좌상단) */
+.quadrant-1 {
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* 2사분면: 동아리 로고 (우상단) */
+.quadrant-2 {
+  background-color: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 3사분면: 활동 소개 (좌하단) */
+.quadrant-3 {
+  background-color: #fafafa;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* 4사분면: 활동 사진 (우하단) */
+.quadrant-4 {
+  background-color: #ffffff;
+}
+
+/* 사분면 제목 */
+.quadrant-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+/* 1사분면: 소개글 텍스트 박스 */
+.intro-text-box {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.intro-text-box p {
+  margin-bottom: 20px;
+}
+
+/* 2사분면: 로고 컨테이너 */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.club-logo {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 3사분면: 활동 리스트 */
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-list li {
+  margin-bottom: 24px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.activity-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #e74c3c;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.activity-list strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.activity-list p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* 4사분면: 포토 갤러리 */
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.gallery-item {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  aspect-ratio: 4/3;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이미지 확대 모달 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.modal-close:hover {
+  opacity: 0.7;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
+
+  .quadrant {
+    border: none !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    min-height: 400px;
+  }
+
+  .club-logo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .photo-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .quadrant {
+    padding: 24px;
+  }
+
+  .quadrant-title {
+    font-size: 22px;
+  }
+
+  .photo-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
