@@ -7,7 +7,7 @@
 
 /* 상단 네비게이션 바 */
 .navbar {
-  height: 72px;
+  height: 68px;
   width: 100%;
   background-color: #000;
   display: flex;
@@ -22,7 +22,7 @@
 /* 메뉴 */
 .menu {
   display: flex;
-  gap: 80px;
+  gap: 150px;
 }
 
 .menu-item {
@@ -39,7 +39,7 @@
 /* 인스타그램 아이콘 */
 .instagram-link {
   position: absolute;
-  right: 32px;
+  right: 50px;
 }
 
 .instagram-link img {
@@ -65,4 +65,23 @@
   line-height: 1.2;
   margin: 0 auto;
   width: 100%;
+}
+
+/* 메인 로고 */
+.main-logo {
+  position: absolute;
+  left: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.main-logo img {
+  height: 50px;  /* 로고 크기 조절 */
+  width: auto;
+  transition: opacity 0.3s;
+}
+
+.main-logo:hover img {
+  opacity: 0.8;
 }
