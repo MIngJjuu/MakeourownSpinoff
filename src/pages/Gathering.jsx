@@ -38,20 +38,26 @@ export default function Gathering() {
       </div>
 
       <div className="gathering-gallery">
-        {photos.map((photo) => (
+        {photos.map((photo) => (          
           <div
             key={photo.id}
-            className="gallery-item"
-            onClick={() => openModal(photo)}
+              className="gallery-item"
           >
-            <div className="gallery-img-wrap">
-              <img src={photo.src} alt={photo.caption} />
-              <div className="gallery-overlay">
-                <span className="gallery-caption">{photo.caption}</span>
-                <span className="gallery-zoom">＋</span>
+            <a 
+              href={photo.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="gallery-link"
+         >
+              <div className="gallery-img-wrap">
+                 <img src={photo.src} alt={photo.caption} />
+                 <div className="gallery-overlay">
+                   <span className="gallery-caption">{photo.caption}</span>
+                   <span className="gallery-zoom">+</span>
               </div>
             </div>
-          </div>
+         </a>
+        </div>
         ))}
       </div>
     </div>
