@@ -8,55 +8,46 @@
 /* Hero */
 .gathering-hero {
   text-align: center;
-  padding: 64px 24px 40px;
-}
-
-.gathering-title {
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #111;
-  margin: 0 0 12px;
-  text-transform: uppercase;
+  padding: 50px 24px 40px;
 }
 
 .gathering-subtitle {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #666;
   margin: 0 0 24px;
   letter-spacing: 0.04em;
 }
 
 .gathering-title-line {
-  width: 48px;
+  width: 60px;
   height: 3px;
   background: #e74c3c;
   margin: 0 auto;
 }
 
-/* Gallery Grid */
 .gathering-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 24px 48px 64px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 최소 너비 조정 */
+  gap: 15px;
+  padding: 40px 20px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .gallery-item {
-  cursor: pointer;
-  border-radius: 4px;
-  overflow: hidden;
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
 }
 
 .gallery-img-wrap {
   position: relative;
-  aspect-ratio: 4 / 3;
-  background: #ddd;
+  width: 100%;
+  aspect-ratio: 3/4;
   overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
 }
-
 .gallery-img-wrap img {
   width: 100%;
   height: 100%;
@@ -74,7 +65,7 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
