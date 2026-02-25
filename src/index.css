@@ -1,10 +1,9 @@
-/* ── Google Fonts Import ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
 
 :root {
-  font-family: 'Noto Sans KR', sans-serif; /* ← 변경 */
+  font-family: 'Sulphur Point', sans-serif; /* ← 변경 */
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
 
   color-scheme: light;                     /* ← 다크모드 제거 (홈페이지 디자인에 맞게) */
   color: #111;                             /* ← 변경 */
@@ -31,9 +30,9 @@ body {
   min-height: 100vh;
 }
 
-/* 영문 제목은 Playfair Display */
+/* 영문 제목은 Sulphur Point */
 h1, h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Sulphur Point', sans-serif;
   line-height: 1.1;
 }
 
@@ -47,7 +46,7 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: 'Noto Sans KR', sans-serif; /* ← 변경 */
+  font-family: 'Sulphur Point', 'Noto Sans KR', sans-serif; /* ← 변경 */
   background-color: #111;                  /* ← 변경 */
   color: #fff;                             /* ← 변경 */
   cursor: pointer;
