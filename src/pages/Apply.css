@@ -1,6 +1,7 @@
 /* ── Apply Page ── */
 .apply-page {
   min-height: 100vh;
+  min-width: 900px; /* ← 추가: 이 이하로 줄어들지 않음 */
   background-color: #f5f5f5;
   padding-top: 72px; /* navbar 높이 */
   display: flex;
@@ -13,36 +14,35 @@
   grid-template-columns: 1fr 1fr;
   gap: 0;
   flex: 1;
-  padding: 64px 80px 48px;
-  max-width: 1200px;
+  padding: 45px 80px 40px;
   margin: 0 auto;
-  width: 100%;
+  width: 1200px; /* ← max-width, margin: auto 제거하고 고정 너비로 */
   box-sizing: border-box;
 }
 
 /* ── 좌측: FAQ ── */
 .apply-faq {
-  padding-right: 48px;
+  padding-right: 0px;
 }
 
 .faq-heading {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: #111;
-  margin: 0 0 48px;
+  margin: 0 0 40px;
   letter-spacing: 0.05em;
 }
 
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 30px;
 }
 
 .faq-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .faq-q {
@@ -54,7 +54,7 @@
 
 .faq-qnum {
   color: #e74c3c;
-  margin-right: 4px;
+  margin-right: 5px;
 }
 
 .faq-a {
@@ -66,7 +66,7 @@
 
 .faq-anum {
   color: #999;
-  margin-right: 4px;
+  margin-right: 5px;
 }
 
 /* ── 우측: 포스터 ── */
@@ -97,26 +97,7 @@
 }
 
 .apply-poster:hover img {
-  transform: scale(1.03);
-}
-
-/* 포스터 오버레이 (이미지 없을 때도 텍스트 표시) */
-.poster-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.0);
-  transition: background 0.3s ease;
-}
-
-/* 이미지가 없을 때 fallback 텍스트 스타일 */
-.apply-poster img[src="/images/apply-poster.jpg"]:not([complete]),
-.apply-poster img[src="/images/apply-poster.jpg"][naturalWidth="0"] ~ .poster-overlay {
-  background: rgba(80, 80, 80, 0.85);
+  transform: scale(1.015);
 }
 
 .poster-overlay p {
@@ -126,7 +107,6 @@
   margin: 0;
   text-align: center;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  /* 실제 포스터 이미지가 있으면 hover 시에만 표시 */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -144,19 +124,24 @@
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  border-radius: 2px;
-  transition: background 0.2s ease;
-  white-space: nowrap;
+  letter-spacing: 0.06em; 
+  border-radius: 4px; /* 둥근 정도 */
+  transition: background 0.2s ease, transform 0.4s ease; /* ← transform 추가 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.poster-form-btn:hover {
+  color: #fff;
+  transform: scale(1.015); /* ← 포스터와 동일한 확대 비율 */
 }
 
 /* ── 하단: 기타 문의 ── */
 .apply-contact {
   text-align: center;
-  padding: 32px 24px 56px;
+  padding: 20px 24px 40px;
   font-size: 1rem;
   color: #333;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0; 
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -164,7 +149,7 @@
 }
 
 .contact-label {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .contact-link {
@@ -202,7 +187,7 @@
 
 .poster-modal-box {
   position: relative;
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
 }
 
