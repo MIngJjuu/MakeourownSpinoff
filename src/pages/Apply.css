@@ -36,7 +36,7 @@
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 36px;
 }
 
 .faq-item {
@@ -148,10 +148,6 @@
   border-radius: 2px;
   transition: background 0.2s ease;
   white-space: nowrap;
-}
-
-.poster-form-btn:hover {
-  background: #e74c3c;
 }
 
 /* ── 하단: 기타 문의 ── */

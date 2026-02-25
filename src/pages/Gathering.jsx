@@ -21,8 +21,7 @@ export default function Gathering() {
   return (
     <div className="gathering-page">
       <div className="gathering-hero">
-        <h1 className="gathering-title">Gathering</h1>
-        <p className="gathering-subtitle">스핀오프의 모임 현장을 만나보세요</p>
+        <p className="gathering-subtitle">이미지를 클릭하면 해당 영화의 발제 게시물로 이동됩니다.</p>
         <div className="gathering-title-line" />
       </div>
 

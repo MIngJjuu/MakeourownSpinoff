@@ -1,26 +1,24 @@
 import { useState } from "react";
 import "./Apply.css";
 
-// ⬇️ 실제 링크로 교체하세요
 const GOOGLE_FORM_URL = "https://forms.gle/c6qJUrf8Gqp4ZWz99";
 const OPENCHAT_URL = "https://open.kakao.com/o/snixfWhi";
 const INSTAGRAM_URL = "https://www.instagram.com/makeurownspinoff?igsh=MThybXJtcTgwdW9ycw==";
 
-// ⬇️ 지원 포스터 이미지 경로
 const POSTER_SRC = "/src/assets/7th_recruiting.png";
 
-const faqs = [
+const faqs = [ //자주 묻는 질문 정리
   {
-    q: "성비",
-    a: "성비 제한 없이 누구나 지원 가능합니다.",
+    q: "지원 자격이 어떻게 되나요?",
+    a: "대학 재학생 및 수료생에 한해 지원 가능합니다.(졸업생은 지원받고 있지 않습니다)",
   },
   {
-    q: "최소 참석 횟수",
-    a: "정기모임 기준 월 2회 이상 참석을 권장합니다.",
+    q: "최소 참석 횟수가 있나요?",
+    a: "OT는 필참이며, 발제 3회 이상 참여 필수입니다..",
   },
   {
-    q: "영화 관심 정도",
-    a: "영화를 좋아하는 마음만 있으면 충분합니다. 전공 무관.",
+    q: "영화를 잘 알지 못해도 괜찮나요?",
+    a: "스핀오프에서는 영화에 대한 흥미가 가장 중요합니다. 영화에 대한 지식이 필요한 것은 아닙니다.",
   },
   {
     q: "발제 영화 종류",
@@ -60,12 +58,6 @@ export default function Apply() {
             title="클릭하여 확대"
           >
             <img src={POSTER_SRC} alt="지원 포스터" />
-            <div className="poster-overlay">
-              <p>지원 포스터</p>
-              <p>클릭 시 사진 확대</p>
-              <p>접속 QR 제공</p>
-              <p>구글폼 하이퍼링크는 하단에 따로</p>
-            </div>
           </div>
 
           {/* 구글 폼 버튼 */}
@@ -82,13 +74,13 @@ export default function Apply() {
 
       {/* 하단: 기타 문의 */}
       <div className="apply-contact">
-        <span className="contact-label">그 외 질문 : </span>
+        <span className="contact-label">문의 : </span>
         <a href={OPENCHAT_URL} target="_blank" rel="noopener noreferrer" className="contact-link">
-          오픈채팅 연결
+          오픈채팅
         </a>
         <span className="contact-sep">, </span>
         <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="contact-link">
-          인스타 연결
+          인스타그램
         </a>
       </div>
 
