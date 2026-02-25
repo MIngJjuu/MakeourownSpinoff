@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Gathering.css";
+import '../App.css';
 
 const photos = [
   { id: 1, src: "/images/gathering1.jpg", alt: "모임 사진 1", caption: "2024 봄 정기모임" },

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Apply.css";
+import '../App.css';
 
 const GOOGLE_FORM_URL = "https://forms.gle/c6qJUrf8Gqp4ZWz99";
 const OPENCHAT_URL = "https://open.kakao.com/o/snixfWhi";

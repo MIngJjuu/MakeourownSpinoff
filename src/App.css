@@ -57,7 +57,7 @@
 /* 메뉴: 정확히 중앙 */
 .menu {
   display: flex;
-  gap: 80px;
+  gap: 60px;
 }
 
 .menu-item {
@@ -73,6 +73,8 @@
 
 /* 인스타그램: 우측 고정 */
 .instagram-link {
+  display: flex;
+  align-items: center;
 }
 
 .instagram-link img {

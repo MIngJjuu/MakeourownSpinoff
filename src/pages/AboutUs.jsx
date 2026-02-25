@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
 import '../App.css';
 import './AboutUs.css';
 
@@ -15,10 +14,7 @@ function AboutUs() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <div className="layout">
-      <Navbar />
-      
-      <main className="about-main">
+     <main className="about-main">
         <div className="about-grid">
           {/* 1사분면: 동아리 소개글 */}
           <section className="quadrant quadrant-1">
@@ -107,7 +103,6 @@ function AboutUs() {
           </div>
         )}
       </main>
-    </div>
   );
 }
 
