@@ -40,7 +40,7 @@ function AboutUs() {
           <section className="quadrant quadrant-2">
             <div className="logo-container">
               <img 
-                src="src/assets/logo.png" 
+                src="/images/logo.png" 
                 alt="Spinoff Logo" 
                 className="club-logo"
               />

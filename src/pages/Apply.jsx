@@ -6,7 +6,7 @@ const GOOGLE_FORM_URL = "https://forms.gle/c6qJUrf8Gqp4ZWz99";
 const OPENCHAT_URL = "https://open.kakao.com/o/snixfWhi";
 const INSTAGRAM_URL = "https://www.instagram.com/makeurownspinoff?igsh=MThybXJtcTgwdW9ycw==";
 
-const POSTER_SRC = "/src/assets/7th_recruiting.png";
+const POSTER_SRC = "/images/7th_recruiting.png";
 
 const faqs = [ //자주 묻는 질문 정리
   {
