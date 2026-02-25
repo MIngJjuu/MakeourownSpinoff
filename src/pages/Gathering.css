@@ -30,7 +30,7 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 최소 너비 조정 */
   gap: 15px;
   padding: 40px 20px;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

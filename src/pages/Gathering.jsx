@@ -3,19 +3,19 @@ import "./Gathering.css";
 import '../App.css';
 
 const photos = [
-  { id: 1, src: "/images/gathering1.jpg", caption: "2024 봄 정기모임" },
-  { id: 2, src: "/images/gathering2.jpg", caption: "영화 감상 세션" },
-  { id: 3, src: "/images/gathering3.jpg", caption: "촬영 워크샵" },
-  { id: 4, src: "/images/gathering4.jpg", caption: "2024 여름 상영회" },
-  { id: 5, src: "/images/gathering5.jpg", caption: "시나리오 피드백" },
-  { id: 6, src: "/images/gathering6.jpg", caption: "편집 스터디" },
-  { id: 7, src: "/images/gathering7.jpg", caption: "2024 가을 정기모임" },
-  { id: 8, src: "/images/gathering8.jpg", caption: "종강 파티" },
-  { id: 9, src: "/images/gathering1.jpg", caption: "2024 봄 정기모임" },
-  { id: 10, src: "/images/gathering2.jpg", caption: "영화 감상 세션" },
-  { id: 11, src: "/images/gathering3.jpg", caption: "촬영 워크샵" },
-  { id: 12, src: "/images/gathering4.jpg", caption: "2024 여름 상영회" },
-  { id: 13, src: "/images/gathering5.jpg", caption: "시나리오 피드백" },
+  { id: 1, src: "src/assets/melancholia.jpg", caption: "멜랑콜리아" },
+  { id: 2, src: "src/assets/kimsvideo.jpg", caption: "킴스비디오" },
+  { id: 3, src: "src/assets/kirishima.jpg", caption: "키리시마가 동아리활동 그만둔대" },
+  { id: 4, src: "src/assets/her.jpg", caption: "그녀" },
+  { id: 5, src: "src/assets/monster.jpg", caption: "괴물" },
+  { id: 6, src: "src/assets/In the Mood for Love.jpg", caption: "화양연화" },
+  { id: 7, src: "src/assets/minari.jpg", caption: "미나리" },
+  { id: 8, src: "src/assets/The Phantom of Baker Street.png", caption: "명탐정 코난:베이커 가의 망령" },
+  { id: 9, src: "src/assets/Anatomy of a fall.png", caption: "추락의 해부" },
+  { id: 10, src: "src/assets/singstreet.png", caption: "싱 스트리트" },
+  { id: 11, src: "src/assets/Comrades.png", caption: "첨밀밀" },
+  { id: 12, src: "src/assets/getout.png", caption: "겟 아웃" },
+  { id: 13, src: "src/assets/Decision To Leave.png", caption: "헤어질 결심" },
   { id: 14, src: "src/assets/BeauisAfraid.webp", caption: "보 이즈 어프레이드" },
   { id: 15, src: "src/assets/TheFall.jpg", caption: "더 폴" }
 ];
