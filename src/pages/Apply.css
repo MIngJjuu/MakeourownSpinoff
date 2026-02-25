@@ -1,0 +1,250 @@
+/* ── Apply Page ── */
+.apply-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-top: 80px; /* navbar 높이 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 메인 2컬럼 ── */
+.apply-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  flex: 1;
+  padding: 64px 80px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── 좌측: FAQ ── */
+.apply-faq {
+  padding-right: 48px;
+}
+
+.faq-heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 48px;
+  letter-spacing: 0.05em;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faq-q {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.faq-qnum {
+  color: #e74c3c;
+  margin-right: 4px;
+}
+
+.faq-a {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.faq-anum {
+  color: #999;
+  margin-right: 4px;
+}
+
+/* ── 우측: 포스터 ── */
+.apply-poster-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.apply-poster {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  background: #888;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.apply-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.apply-poster:hover img {
+  transform: scale(1.03);
+}
+
+/* 포스터 오버레이 (이미지 없을 때도 텍스트 표시) */
+.poster-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.0);
+  transition: background 0.3s ease;
+}
+
+/* 이미지가 없을 때 fallback 텍스트 스타일 */
+.apply-poster img[src="/images/apply-poster.jpg"]:not([complete]),
+.apply-poster img[src="/images/apply-poster.jpg"][naturalWidth="0"] ~ .poster-overlay {
+  background: rgba(80, 80, 80, 0.85);
+}
+
+.poster-overlay p {
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  /* 실제 포스터 이미지가 있으면 hover 시에만 표시 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.apply-poster:hover .poster-overlay p {
+  opacity: 1;
+}
+
+/* 구글폼 버튼 */
+.poster-form-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.poster-form-btn:hover {
+  background: #e74c3c;
+}
+
+/* ── 하단: 기타 문의 ── */
+.apply-contact {
+  text-align: center;
+  padding: 32px 24px 56px;
+  font-size: 1rem;
+  color: #333;
+  border-top: 1px solid #e0e0e0;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-label {
+  font-weight: 700;
+}
+
+.contact-link {
+  color: #e74c3c;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.contact-link:hover {
+  opacity: 0.7;
+}
+
+.contact-sep {
+  color: #555;
+}
+
+.contact-hint {
+  color: #999;
+  font-size: 0.85rem;
+  margin-left: 4px;
+}
+
+/* ── 모달 ── */
+.poster-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.poster-modal-box {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+}
+
+.poster-modal-box img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+}
+
+.poster-modal-close {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.poster-modal-close:hover {
+  color: #e74c3c;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+  .apply-main {
+    grid-template-columns: 1fr;
+    padding: 40px 24px 32px;
+  }
+
+  .apply-faq {
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+
+  .apply-poster-col {
+    align-items: center;
+  }
+}
