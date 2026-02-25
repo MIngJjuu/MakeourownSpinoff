@@ -100,21 +100,6 @@
   transform: scale(1.015);
 }
 
-.poster-overlay p {
-  color: #f0f0f0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0;
-  text-align: center;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.apply-poster:hover .poster-overlay p {
-  opacity: 1;
-}
-
 /* 구글폼 버튼 */
 .poster-form-btn {
   display: inline-block;
@@ -132,7 +117,7 @@
 
 .poster-form-btn:hover {
   color: #fff;
-  transform: scale(1.015); /* ← 포스터와 동일한 확대 비율 */
+  transform: scale(1.015);
 }
 
 /* ── 하단: 기타 문의 ── */
@@ -141,11 +126,11 @@
   padding: 20px 24px 40px;
   font-size: 1rem;
   color: #333;
-  border-top: 1px solid #e0e0e0; 
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  border-top: 1px solid #e0e0e0;
+  max-width: 1200px; /* ← max-width, margin: auto 제거하고 고정 너비로 */
+  margin: 0 auto; /* 가운데 정렬 유지 위해 margin: auto 유지 */
+  width: 100%; /* 너비 100%로 유지, max-width로 최대 너비 제한 */
+  box-sizing: border-box; /* 패딩 포함 너비 계산 */
 }
 
 .contact-label {

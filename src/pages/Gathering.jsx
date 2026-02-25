@@ -16,7 +16,7 @@ const photos = [
   { id: 11, src: "/images/gathering3.jpg", caption: "촬영 워크샵" },
   { id: 12, src: "/images/gathering4.jpg", caption: "2024 여름 상영회" },
   { id: 13, src: "/images/gathering5.jpg", caption: "시나리오 피드백" },
-  { id: 14, src: "/images/gathering6.jpg", caption: "편집 스터디" },
+  { id: 14, src: "src/assets/BeauisAfraid.webp", caption: "보 이즈 어프레이드" },
   { id: 15, src: "src/assets/TheFall.jpg", caption: "더 폴" }
 ];
 
