@@ -116,22 +116,24 @@
   margin: 0;
 }
 
-/* 하단 섹션 컨텐츠 레이아웃 */
+/* 하단 섹션 컨텐츠 레이아웃 - 가로 배치로 변경 */
 .bottom-content {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  flex-direction: row; /* column에서 row로 변경 */
+  justify-content: space-between;
   align-items: center;
-  max-width: 1000px;
+  gap: 40px;
+  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* 매거진 링크 그리드 */
 .magazine-links {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  width: 100%;
+  gap: 20px;
+  flex: 1;
 }
 
 /* 매거진 카드 */
@@ -139,7 +141,7 @@
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3/4;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -177,17 +179,19 @@
 
 .magazine-title {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.03em;
 }
 
-/* Gathering 바로가기 버튼 */
+/* Gathering 바로가기 버튼 - 우측 배치 */
 .gathering-cta-btn {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 18px 40px;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 36px;
   background: linear-gradient(135deg, #e74c3c, #c0392b);
   color: #ffffff;
   font-size: 18px;
@@ -197,6 +201,8 @@
   box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
   transition: all 0.3s ease;
   letter-spacing: 0.05em;
+  flex-shrink: 0; /* 버튼 크기 고정 */
+  min-width: 200px;
 }
 
 .gathering-cta-btn:hover {
@@ -206,11 +212,11 @@
 }
 
 .cta-text {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .cta-arrow {
-  font-size: 24px;
+  font-size: 28px;
   transition: transform 0.3s ease;
 }
 
@@ -220,34 +226,37 @@
 
 /* 반응형 */
 @media (max-width: 1024px) {
-  .about-middle-row {
-    grid-template-columns: 1fr;
+  .bottom-content {
+    flex-direction: column; /* 태블릿 이하는 세로 배치 */
   }
 
-  .about-section {
-    padding: 40px;
-    min-height: 400px;
-  }
-
-  .section-left {
-    border-right: none;
+  .magazine-links {
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .about-section {
-    padding: 30px 24px;
+  .magazine-links {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .section-title {
-    font-size: 22px;
-  }
-
-  .intro-text-box {
+  .magazine-title {
     font-size: 16px;
   }
 
-  .section-image {
-    max-width: 90%;
+  .gathering-cta-btn {
+    padding: 18px 32px;
+    font-size: 16px;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .cta-text {
+    font-size: 15px;
+  }
+
+  .cta-arrow {
+    font-size: 24px;
   }
 }

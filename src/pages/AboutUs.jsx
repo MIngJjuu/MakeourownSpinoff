@@ -82,7 +82,7 @@ function AboutUs() {
               >
                 <img src="/images/5th_magazine.png" alt="5기 매거진" />
                 <div className="magazine-overlay">
-                  <span className="magazine-title">매거진 보러가기</span>
+                  <span className="magazine-title">5기 매거진 보러가기</span>
                 </div>
               </a>
               
@@ -94,7 +94,7 @@ function AboutUs() {
               >
                 <img src="/images/magazine2.jpg" alt="매거진 2" />
                 <div className="magazine-overlay">
-                  <span className="magazine-title">아카이브 보러가기</span>
+                  <span className="magazine-title">6기 매거진은 업데이트 예정입니다.</span>
                 </div>
               </a>
             </div>
