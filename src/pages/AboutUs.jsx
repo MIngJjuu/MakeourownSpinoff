@@ -5,6 +5,9 @@ import './AboutUs.css';
 
 function AboutUs() {
   const [hoveredId, setHoveredId] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const CARDS_PER_SLIDE = 4;
 
   const activities = [
     { 
@@ -67,10 +70,70 @@ function AboutUs() {
     },
   ];
 
+  // 카드 4개씩 슬라이드 단위로 나누기
+  const slides = [];
+  for (let i = 0; i < activities.length; i += CARDS_PER_SLIDE) {
+    slides.push(activities.slice(i, i + CARDS_PER_SLIDE));
+  }
+
   const handleClick = (activity) => {
     if (activity.type === 'magazine' && activity.link) {
       window.open(activity.link, '_blank');
     }
+  };
+
+  const renderCard = (activity) => {
+    if (activity.type === 'cta') {
+      return (
+        <Link
+          key={activity.id}
+          to={activity.link}
+          className="activity-card activity-card-cta"
+          onMouseEnter={() => setHoveredId(activity.id)}
+          onMouseLeave={() => setHoveredId(null)}
+        >
+          <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
+            <div className="activity-image">
+              <img src={activity.image} alt={activity.title} />
+            </div>
+            <div className="activity-title">
+              <h3>{activity.title}</h3>
+            </div>
+          </div>
+          <div className={`activity-back activity-back-cta ${hoveredId === activity.id ? 'show' : ''}`}>
+            <div className="activity-description">
+              <h3>{activity.title}</h3>
+              <p>{activity.description}</p>
+            </div>
+          </div>
+        </Link>
+      );
+    }
+
+    return (
+      <div
+        key={activity.id}
+        className="activity-card"
+        onClick={() => handleClick(activity)}
+        onMouseEnter={() => setHoveredId(activity.id)}
+        onMouseLeave={() => setHoveredId(null)}
+      >
+        <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
+          <div className="activity-image">
+            <img src={activity.image} alt={activity.title} />
+          </div>
+          <div className="activity-title">
+            <h3>{activity.title}</h3>
+          </div>
+        </div>
+        <div className={`activity-back ${hoveredId === activity.id ? 'show' : ''}`}>
+          <div className="activity-description">
+            <h3>{activity.title}</h3>
+            <p>{activity.description}</p>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -99,61 +162,29 @@ function AboutUs() {
         {/* 하단: 활동 갤러리 */}
         <div className="about-section section-gallery">
           <h2 className="section-title">활동 소개</h2>
-          <div className="activity-gallery">
-            {activities.map((activity) => (
-              activity.type === 'cta' ? (
-                <Link
-                  key={activity.id}
-                  to={activity.link}
-                  className="activity-card activity-card-cta"
-                  onMouseEnter={() => setHoveredId(activity.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                >
-                  {/* 기본 상태: 이미지 + 제목 */}
-                  <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
-                    <div className="activity-image">
-                      <img src={activity.image} alt={activity.title} />
-                    </div>
-                    <div className="activity-title">
-                      <h3>{activity.title}</h3>
-                    </div>
-                  </div>
 
-                  {/* 호버 상태: 빨간색 배경 + 설명 */}
-                  <div className={`activity-back activity-back-cta ${hoveredId === activity.id ? 'show' : ''}`}>
-                    <div className="activity-description">
-                      <h3>{activity.title}</h3>
-                      <p>{activity.description}</p>
-                    </div>
-                  </div>
-                </Link>
-              ) : (
-                <div
-                  key={activity.id}
-                  className="activity-card"
-                  onClick={() => handleClick(activity)}
-                  onMouseEnter={() => setHoveredId(activity.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                >
-                  {/* 기본 상태: 이미지 + 제목 */}
-                  <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
-                    <div className="activity-image">
-                      <img src={activity.image} alt={activity.title} />
-                    </div>
-                    <div className="activity-title">
-                      <h3>{activity.title}</h3>
-                    </div>
-                  </div>
-
-                  {/* 호버 상태: 베이지색 배경 + 설명 */}
-                  <div className={`activity-back ${hoveredId === activity.id ? 'show' : ''}`}>
-                    <div className="activity-description">
-                      <h3>{activity.title}</h3>
-                      <p>{activity.description}</p>
-                    </div>
-                  </div>
+          {/* 슬라이더 래퍼 */}
+          <div className="gallery-slider-wrapper">
+            <div
+              className="activity-gallery"
+              style={{ transform: `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 24}px))` }}
+            >
+              {slides.map((slideCards, slideIndex) => (
+                <div key={slideIndex} className="gallery-slide">
+                  {slideCards.map((activity) => renderCard(activity))}
                 </div>
-              )
+              ))}
+            </div>
+          </div>
+
+          {/* dot 버튼 */}
+          <div className="gallery-dots">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`gallery-dot ${currentSlide === index ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(index)}
+              />
             ))}
           </div>
         </div>

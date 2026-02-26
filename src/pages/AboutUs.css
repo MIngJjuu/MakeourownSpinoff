@@ -49,27 +49,47 @@
   margin-bottom: 0;
 }
 
-/* ========== 활동 갤러리 ========== */
-.activity-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+/* ========== 슬라이더 래퍼 ========== */
+.gallery-slider-wrapper {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  overflow: hidden;
+  position: relative;
 }
 
-/* 활동 카드 */
+/* 슬라이드 트랙 */
+.activity-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* 슬라이드 페이지 단위 */
+.gallery-slide {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  min-width: 100%;
+  padding: 8px 4px 16px 4px; /* 카드 hover 시 잘리지 않도록 여백 */
+  box-sizing: border-box;
+}
+
+/* ========== 활동 카드 ========== */
 .activity-card {
   position: relative;
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   aspect-ratio: 3 / 4;
   text-decoration: none;
+  flex: 1 0 0;
+  min-width: 0;
 }
 
 .activity-card:hover {
@@ -138,6 +158,7 @@
   padding: 24px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  box-sizing: border-box;
 }
 
 .activity-back.show {
@@ -170,29 +191,54 @@
   margin: 0;
 }
 
+/* ========== dot 버튼 ========== */
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gallery-dot.active {
+  background-color: #333333;
+  transform: scale(1.2);
+}
+
+.gallery-dot:hover {
+  background-color: #888888;
+}
+
 /* ========== 반응형 ========== */
 @media (max-width: 1200px) {
-  .activity-gallery {
-    grid-template-columns: repeat(3, 1fr);
+  .gallery-slide {
+    gap: 20px;
   }
 }
 
 @media (max-width: 900px) {
-  .activity-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
   .about-section {
     padding: 40px 40px;
+  }
+
+  /* 900px 이하: 한 슬라이드에 카드 2개씩 보이도록 JSX의 CARDS_PER_SLIDE도 2로 변경 권장 */
+  .gallery-slide {
+    gap: 16px;
   }
 }
 
 @media (max-width: 600px) {
-  .activity-gallery {
-    grid-template-columns: 1fr;
-  }
-
   .about-section {
     padding: 30px 24px;
   }
@@ -207,5 +253,9 @@
 
   .activity-description p {
     font-size: 12px;
+  }
+
+  .gallery-slide {
+    gap: 12px;
   }
 }
