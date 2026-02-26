@@ -35,6 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 20px; /* 인스타그램과 햄버거 사이 간격 */
 }
 
 /* 로고 */
@@ -105,4 +106,124 @@
   line-height: 1.2;
   margin: 0 auto;
   width: 100%;
+}
+
+/* ── 햄버거 메뉴 스타일 ── */
+
+/* 햄버거 버튼 */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger-btn span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* 모바일 메뉴 */
+.mobile-menu {
+  position: fixed;
+  top: 68px;
+  right: -100%;
+  width: 70%;
+  max-width: 300px;
+  height: calc(100vh - 68px);
+  background-color: #000;
+  transition: right 0.3s ease;
+  z-index: 99;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu-item {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px 30px;
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s;
+}
+
+.mobile-menu-item:hover {
+  background-color: #1a1a1a;
+  color: #e74c3c;
+}
+
+/* 오버레이 */
+.menu-overlay {
+  position: fixed;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 68px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+}
+
+/* 반응형 표시/숨김 */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.desktop-menu {
+  display: flex;
+}
+
+/* 태블릿 & 모바일만 */
+@media (max-width: 768px) {
+  /* navbar를 flexbox로 변경 */
+  .navbar {
+    display: flex;
+    justify-content: space-between; /* 로고 왼쪽, 햄버거 오른쪽 */
+    padding: 0 20px;
+  }
+
+  /* 데스크톱 메뉴 숨김 */
+  .desktop-menu {
+    display: none !important;
+  }
+
+  /* 인스타그램 로고 숨김 */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* 햄버거 버튼 표시 */
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+  }
+
+  /* 메인 타이틀 크기 조정 */
+  .main-title {
+    font-size: 48px;
+    padding: 0 20px;
+  }
+
+  .main {
+    padding-top: 100px;
+  }
 }
