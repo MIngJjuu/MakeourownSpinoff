@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F4F4F4; 
+  background-color: #f5f5f5; 
   overflow: hidden; /* 스크롤 방지 */
 }
 
