@@ -20,11 +20,6 @@
   min-height: auto;
 }
 
-/* 하단: 활동 갤러리 */
-.section-gallery {
-  background-color: #ffffff;
-}
-
 /* 섹션 제목 */
 .section-title {
   font-size: 28px;
@@ -80,13 +75,12 @@
 /* ========== 활동 카드 ========== */
 .activity-card {
   position: relative;
-  background: #ffffff;
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3/4;
   text-decoration: none;
   flex: 1 0 0;
   min-width: 0;
@@ -114,13 +108,13 @@
 
 .activity-image {
   width: 100%;
-  height: 70%;
+  height: 90%;
   overflow: hidden;
 }
 
 .activity-image img {
   width: 100%;
-  height: 100%;
+  height: 110%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -130,7 +124,7 @@
 }
 
 .activity-title {
-  height: 30%;
+  height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +133,7 @@
 }
 
 .activity-title h3 {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   color: #333;
   margin: 0;
@@ -155,7 +149,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
   box-sizing: border-box;
@@ -180,13 +174,13 @@
 }
 
 .activity-description h3 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   margin: 0 0 12px 0;
 }
 
 .activity-description p {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.6;
   margin: 0;
 }
@@ -259,3 +253,4 @@
     gap: 12px;
   }
 }
+
