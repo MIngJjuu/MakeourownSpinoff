@@ -16,7 +16,7 @@ function AboutUs() {
     { id: 4, image: '/images/MT.jpg', title: 'MT', description: '학기 중 진행되는 MT에서는 친목을 도모할 수 있습니다.', type: 'activity' },
     { id: 5, image: '/images/번개.jpg', title: '번개모임', description: 'GV, 특별 상영회 등을 함께할 수 있습니다.', type: 'activity' },
     { id: 6, image: '/images/종강총회.jpg', title: '종강총회', description: '모든 발제 종료 후 종강총회를 진행합니다.', type: 'activity' },
-    { id: 7, image: '/images/5th_magazine.png', title: '웹매거진', description: '웹매거진을 발행하여 활동을 기록합니다.', type: 'magazine', link: 'https://drive.google.com/...' },
+    { id: 7, image: '/images/5th_magazine.png', title: '웹매거진', description: '웹매거진을 발행하여 활동을 기록합니다.', type: 'magazine', link: 'https://drive.google.com/file/d/18Wun2QRtT2tsKKCFk-wgP2698ck27qCb/view?usp=sharing' },
     { id: 8, image: '/images/logo_2.png', title: '더 많은 활동 보러가기', description: '클릭 시 6기 발제 게시물로 이동됩니다.', type: 'cta', link: '/gathering' },
   ];
 
