@@ -57,22 +57,22 @@
 .activity-gallery {
   display: flex;
   flex-direction: row;
-  gap: 0;
+  gap: 24px; /* 슬라이드 뭉치 사이의 간격 */
   width: 100%;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 슬라이드 페이지 단위 */
 .gallery-slide {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 24px; /* 카드 사이의 간격 */
   min-width: 100%;
-  padding: 8px 4px 16px 4px; /* 카드 hover 시 잘리지 않도록 여백 */
+  padding: 8px 4px 16px 4px;
   box-sizing: border-box;
 }
 
-/* ========== 활동 카드 ========== */
+/* 활동 카드 */
 .activity-card {
   position: relative;
   border-radius: 6px;
@@ -82,7 +82,7 @@
   cursor: pointer;
   aspect-ratio: 3/4;
   text-decoration: none;
-  flex: 1 0 0;
+  flex: 1; /* 부모 너비에서 균등 배분 */
   min-width: 0;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .activity-title h3 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: #333;
   margin: 0;
@@ -180,7 +180,7 @@
 }
 
 .activity-description p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
   margin: 0;
 }
@@ -214,43 +214,51 @@
   background-color: #888888;
 }
 
-/* ========== 반응형 ========== */
-@media (max-width: 1200px) {
-  .gallery-slide {
-    gap: 20px;
-  }
-}
-
+/* ========== 반응형 수정 ========== */
 @media (max-width: 900px) {
   .about-section {
-    padding: 40px 40px;
+    padding: 40px 30px;
   }
 
-  /* 900px 이하: 한 슬라이드에 카드 2개씩 보이도록 JSX의 CARDS_PER_SLIDE도 2로 변경 권장 */
   .gallery-slide {
+    gap: 16px; /* 모바일에서는 간격을 조금 좁힘 */
+  }
+
+  /* 2개씩 보일 때 제목 크기 조정 */
+  .activity-title h3 {
+    font-size: 13px;
+  }
+
+  /* 슬라이드 트랙 간격도 미디어쿼리에 맞춰 수정 */
+  .activity-gallery {
     gap: 16px;
   }
 }
 
 @media (max-width: 600px) {
   .about-section {
-    padding: 30px 24px;
+    padding: 30px 20px;
   }
 
   .section-title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .activity-description h3 {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 8px;
   }
 
   .activity-description p {
-    font-size: 12px;
+    font-size: 11px;
+    line-height: 1.5;
   }
 
   .gallery-slide {
     gap: 12px;
   }
+  
+  .activity-gallery {
+    gap: 12px;
+  }
 }
-

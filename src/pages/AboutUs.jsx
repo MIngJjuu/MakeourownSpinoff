@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './AboutUs.css';
@@ -6,74 +6,41 @@ import './AboutUs.css';
 function AboutUs() {
   const [hoveredId, setHoveredId] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const CARDS_PER_SLIDE = 4;
+// 1. 슬라이드 당 카드 개수를 상태로 관리 (기본값 4)
+  const [cardsPerSlide, setCardsPerSlide] = useState(4);
 
   const activities = [
-    { 
-      id: 1, 
-      image: 'public/images/OT.jpg', 
-      title: 'OT',
-      description: '학기 초, 모든 회원들이 모여 OT를 진행합니다.(참여가 어려울 시 활동이 제한될 수 있습니다.)',
-      type: 'activity'
-    },
-    { 
-      id: 2, 
-      image: 'public/images/발제2.jpg', 
-      title: '발제 및 토론',
-      description: '발제자의 영화 발제자료를 기반으로 월요일 19~22시까지 토론을 진행합니다.',
-      type: 'activity'
-    },
-    { 
-      id: 3, 
-      image: 'public/images/발제자료.jpeg', 
-      title: '발제 및 토론',
-      description: '발제자는 영화에 대한 감상을 기반으로 부원들과 함께 나누고 싶은 질문을 발제자료로 제작해 배포합니다.',
-      type: 'activity'
-    },
-    { 
-      id: 4, 
-      image: 'public/images/MT.jpg', 
-      title: 'MT',
-      description: '학기 중 진행되는 MT에서는 영화 게임 등을 통해 부원들과 친목을 도모할 수 있습니다(일정은 변동될 수 있습니다).',
-      type: 'activity'
-    },
-    { 
-      id: 5, 
-      image: 'public/images/번개.jpg', 
-      title: '번개모임',
-      description: 'GV, 특별 상영회, 단체관람 등 함께하고 싶은 순간을 부원들과 함께할 수 있습니다.',
-      type: 'activity'
-    },
-    { 
-      id: 6, 
-      image: 'public/images/종강총회.jpg', 
-      title: '종강총회',
-      description: '모든 발제 종료 후 동아리원들과 함께하는 종강총회를 진행합니다.',
-      type: 'activity'
-    },
-    { 
-      id: 7, 
-      image: 'public/images/5th_magazine.png', 
-      title: '웹매거진',
-      description: '웹매거진을 발행하여 한 기수 동안의 활동을 기록하고 공유합니다. 클릭 시 5기 웹매거진으로 이동합니다(6기 매거진은 준비 중입니다).',
-      type: 'magazine',
-      link: 'https://drive.google.com/file/d/18Wun2QRtT2tsKKCFk-wgP2698ck27qCb/view?usp=sharing'
-    },
-    { 
-      id: 8, 
-      image: 'public/images/logo_2.png', 
-      title: '더 많은 활동 보러가기',
-      description: '클릭 시 6기 발제 게시물로 이동됩니다.',
-      type: 'cta',
-      link: '/gathering'
-    },
+    { id: 1, image: '/images/OT.jpg', title: 'OT', description: '학기 초, 모든 회원들이 모여 OT를 진행합니다.', type: 'activity' },
+    { id: 2, image: '/images/발제2.jpg', title: '발제 및 토론', description: '발제자의 영화 발제자료를 기반으로 월요일 19~22시까지 토론을 진행합니다.', type: 'activity' },
+    { id: 3, image: '/images/발제자료.jpeg', title: '발제 안내', description: '발제자는 질문을 발제자료로 제작해 배포합니다.', type: 'activity' },
+    { id: 4, image: '/images/MT.jpg', title: 'MT', description: '학기 중 진행되는 MT에서는 친목을 도모할 수 있습니다.', type: 'activity' },
+    { id: 5, image: '/images/번개.jpg', title: '번개모임', description: 'GV, 특별 상영회 등을 함께할 수 있습니다.', type: 'activity' },
+    { id: 6, image: '/images/종강총회.jpg', title: '종강총회', description: '모든 발제 종료 후 종강총회를 진행합니다.', type: 'activity' },
+    { id: 7, image: '/images/5th_magazine.png', title: '웹매거진', description: '웹매거진을 발행하여 활동을 기록합니다.', type: 'magazine', link: 'https://drive.google.com/...' },
+    { id: 8, image: '/images/logo_2.png', title: '더 많은 활동 보러가기', description: '클릭 시 6기 발제 게시물로 이동됩니다.', type: 'cta', link: '/gathering' },
   ];
 
-  // 카드 4개씩 슬라이드 단위로 나누기
+// 2. 화면 너비에 따라 cardsPerSlide 변경하는 Effect
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 900) {
+        setCardsPerSlide(2);
+      } else {
+        setCardsPerSlide(4);
+      }
+      // 화면 크기가 변할 때 인덱스 오류 방지를 위해 첫 슬라이드로 리셋 (선택사항)
+      setCurrentSlide(0);
+    };
+
+    handleResize(); // 초기 실행
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 3. 변경된 cardsPerSlide를 기준으로 슬라이드 나누기
   const slides = [];
-  for (let i = 0; i < activities.length; i += CARDS_PER_SLIDE) {
-    slides.push(activities.slice(i, i + CARDS_PER_SLIDE));
+  for (let i = 0; i < activities.length; i += cardsPerSlide) {
+    slides.push(activities.slice(i, i + cardsPerSlide));
   }
 
   const handleClick = (activity) => {
@@ -83,38 +50,15 @@ function AboutUs() {
   };
 
   const renderCard = (activity) => {
-    if (activity.type === 'cta') {
-      return (
-        <Link
-          key={activity.id}
-          to={activity.link}
-          className="activity-card activity-card-cta"
-          onMouseEnter={() => setHoveredId(activity.id)}
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
-            <div className="activity-image">
-              <img src={activity.image} alt={activity.title} />
-            </div>
-            <div className="activity-title">
-              <h3>{activity.title}</h3>
-            </div>
-          </div>
-          <div className={`activity-back activity-back-cta ${hoveredId === activity.id ? 'show' : ''}`}>
-            <div className="activity-description">
-              <h3>{activity.title}</h3>
-              <p>{activity.description}</p>
-            </div>
-          </div>
-        </Link>
-      );
-    }
+    const isCTA = activity.type === 'cta';
+    const CardTag = isCTA ? Link : 'div';
+    const cardProps = isCTA ? { to: activity.link } : { onClick: () => handleClick(activity) };
 
     return (
-      <div
+      <CardTag
         key={activity.id}
-        className="activity-card"
-        onClick={() => handleClick(activity)}
+        {...cardProps}
+        className={`activity-card ${isCTA ? 'activity-card-cta' : ''}`}
         onMouseEnter={() => setHoveredId(activity.id)}
         onMouseLeave={() => setHoveredId(null)}
       >
@@ -126,13 +70,13 @@ function AboutUs() {
             <h3>{activity.title}</h3>
           </div>
         </div>
-        <div className={`activity-back ${hoveredId === activity.id ? 'show' : ''}`}>
+        <div className={`activity-back ${isCTA ? 'activity-back-cta' : ''} ${hoveredId === activity.id ? 'show' : ''}`}>
           <div className="activity-description">
             <h3>{activity.title}</h3>
             <p>{activity.description}</p>
           </div>
         </div>
-      </div>
+      </CardTag>
     );
   };
 
