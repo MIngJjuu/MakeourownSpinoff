@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './AboutUs.css';
 
 function AboutUs() {
+  // 슬라이드 자동 넘김을 위한 state
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    { id: 1, image: '/images/activity1.jpg', title: '정기 상영회' },
+    { id: 2, image: '/images/activity2.jpg', title: '발제 및 토론' },
+    { id: 3, image: '/images/activity3.jpg', title: 'MT & 친목' },
+    { id: 4, image: '/images/activity4.jpg', title: '번개 모임' },
+  ];
+
+  // 자동 슬라이드 (3초마다)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <main className="about-main">
       <div className="about-grid">
@@ -29,10 +48,31 @@ function AboutUs() {
 
         {/* 중단 2열 */}
         <div className="about-middle-row">
-          {/* 좌중단: 이미지 */}
+          {/* 좌중단: 슬라이드 이미지 */}
           <div className="about-section section-left">
-            <div className="image-container">
-              <img src="/images/club-image.jpg" alt="Club" className="section-image" />
+            <div className="slideshow-container">
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.id}
+                  className={`slide ${index === currentSlide ? 'active' : ''}`}
+                >
+                  <img src={slide.image} alt={slide.title} />
+                  <div className="slide-title">
+                    <h3>{slide.title}</h3>
+                  </div>
+                </div>
+              ))}
+
+              {/* 인디케이터 (점) */}
+              <div className="slide-indicators">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentSlide(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -71,18 +111,21 @@ function AboutUs() {
         {/* 하단: 추가 정보 섹션 */}
         <div className="about-section section-bottom">
           <h2 className="section-title">활동 확인하기</h2>
+          
           <div className="bottom-content">
-            {/* 매거진 링크 */}
-            <div className="magazine-links">
+            <div className="magazine-cards-wrapper">
               <a 
                 href="https://drive.google.com/file/d/18Wun2QRtT2tsKKCFk-wgP2698ck27qCb/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="magazine-card"
+                className="info-card"
               >
-                <img src="/images/5th_magazine.png" alt="5기 매거진" />
-                <div className="magazine-overlay">
-                  <span className="magazine-title">5기 매거진 보러가기</span>
+                <div className="info-card-image">
+                  <img src="/images/5th_magazine.png" alt="5기 매거진" />
+                </div>
+                <div className="info-card-content">
+                  <h3 className="info-card-title">5기 매거진 보러가기</h3>
+                  <p className="info-card-desc">5기 활동 기록과 발제 내용을 담은 매거진입니다.</p>
                 </div>
               </a>
               
@@ -90,20 +133,27 @@ function AboutUs() {
                 href="https://magazine-link-2.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="magazine-card"
+                className="info-card"
               >
-                <img src="/images/magazine2.jpg" alt="매거진 2" />
-                <div className="magazine-overlay">
-                  <span className="magazine-title">6기 매거진은 업데이트 예정입니다.</span>
+                <div className="info-card-image">
+                  <img src="/images/magazine2.jpg" alt="6기 매거진" />
+                </div>
+                <div className="info-card-content">
+                  <h3 className="info-card-title">6기 매거진</h3>
+                  <p className="info-card-desc">6기 매거진은 업데이트 예정입니다.</p>
                 </div>
               </a>
-            </div>
 
-            {/* Gathering 페이지 바로가기 */}
-            <Link to="/gathering" className="gathering-cta-btn">
-              <span className="cta-text">발제 게시물 보러가기</span>
-              <span className="cta-arrow">→</span>
-            </Link>
+              <Link to="/gathering" className="info-card info-card-cta">
+                <div className="info-card-image">
+                  <img src="/images/gathering-preview.jpg" alt="발제 게시물" />
+                </div>
+                <div className="info-card-content">
+                  <h3 className="info-card-title">발제 게시물 보러가기</h3>
+                  <p className="info-card-desc">회원들의 영화 발제를 둘러보세요.</p>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
