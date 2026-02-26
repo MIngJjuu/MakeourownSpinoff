@@ -3,7 +3,7 @@ import '../App.css';
 import './AboutUs.css';
 
 function AboutUs() {
-  // 갤러리 이미지 더미 데이터 (실제 이미지로 교체 필요)
+  // 갤러리 이미지 더미 데이터 (사용하지 않으면 제거 가능)
   const galleryImages = [
     { id: 1, src: 'https://via.placeholder.com/200x150', alt: '활동 사진 1' },
     { id: 2, src: 'https://via.placeholder.com/200x150', alt: '활동 사진 2' },
@@ -14,42 +14,40 @@ function AboutUs() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-     <main className="about-main">
-        <div className="about-grid">
-          {/* 1사분면: 동아리 소개글 */}
-          <section className="quadrant quadrant-1">
-            <h2 className="quadrant-title">스핀오프는요,</h2>
-            <div className="intro-text-box">
-              <p>
-                SPINOFF는 영화를 사랑하는 사람들이 모여 함께 영화를 감상하고, 
-                토론하며, 영화에 대한 깊이 있는 이해를 나누는 영화감상토론동아리입니다.
-              </p>
-              <p>
-                우리는 매주 선정된 영화를 함께 보고, 발제를 통해 영화의 주제, 연출, 
-                스토리 등을 다각도로 분석합니다. 영화를 단순히 보는 것을 넘어서, 
-                영화가 담고 있는 메시지와 예술적 가치를 함께 탐구합니다.
-              </p>
-              <p>
-                다양한 장르와 시대의 영화를 접하며, 영화에 대한 안목을 키우고 
-                동료들과의 깊이 있는 대화를 통해 성장하는 것이 우리의 목표입니다.
-              </p>
-            </div>
-          </section>
+    <main className="about-main">
+      <div className="about-grid">
+        {/* 상단: 소개글 */}
+        <div className="about-section section-intro">
+          <h2 className="section-title">스핀오프는요,</h2>
+          <div className="intro-text-box">
+            <p>
+              SPINOFF는 영화를 사랑하는 사람들이 모여 함께 영화를 감상하고, 
+              토론하며, 영화에 대한 깊이 있는 이해를 나누는 영화감상토론동아리입니다.
+            </p>
+            <p>
+              우리는 매주 선정된 영화를 함께 보고, 발제를 통해 영화의 주제, 연출, 
+              스토리 등을 다각도로 분석합니다. 영화를 단순히 보는 것을 넘어서, 
+              영화가 담고 있는 메시지와 예술적 가치를 함께 탐구합니다.
+            </p>
+            <p>
+              다양한 장르와 시대의 영화를 접하며, 영화에 대한 안목을 키우고 
+              동료들과의 깊이 있는 대화를 통해 성장하는 것이 우리의 목표입니다.
+            </p>
+          </div>
+        </div>
 
-          {/* 2사분면: 동아리 로고 */}
-          <section className="quadrant quadrant-2">
-            <div className="logo-container">
-              <img 
-                src="/images/logo.png" 
-                alt="Spinoff Logo" 
-                className="club-logo"
-              />
+        {/* 중단 2열 */}
+        <div className="about-middle-row">
+          {/* 좌중단: 이미지 */}
+          <div className="about-section section-left">
+            <div className="image-container">
+              <img src="/images/club-image.jpg" alt="Club" className="section-image" />
             </div>
-          </section>
+          </div>
 
-          {/* 3사분면: 활동 소개 (리스트) */}
-          <section className="quadrant quadrant-3">
-            <h2 className="quadrant-title">활동 소개</h2>
+          {/* 우중단: 활동 내용 */}
+          <div className="about-section section-right">
+            <h2 className="section-title">활동 소개</h2>
             <ul className="activity-list">
               <li>
                 <strong>오리엔테이션</strong>
@@ -72,37 +70,18 @@ function AboutUs() {
                 <p>학기 종료 시, 모든 동아리원들과 함께하는 종강총회를 진행합니다.</p>
               </li>
             </ul>
-          </section>
-
-          {/* 4사분면: 활동 사진 (포토 갤러리) */}
-          <section className="quadrant quadrant-4">
-            <h2 className="quadrant-title">활동 사진</h2>
-            <div className="photo-gallery-grid">
-              {galleryImages.map((image) => (
-                <div 
-                  key={image.id} 
-                  className="gallery-item"
-                  onClick={() => setSelectedImage(image)}
-                >
-                  <img src={image.src} alt={image.alt} />
-                </div>
-              ))}
-            </div>
-          </section>
+          </div>
         </div>
 
-        {/* 이미지 확대 모달 */}
-        {selectedImage && (
-          <div className="modal" onClick={() => setSelectedImage(null)}>
-            <div className="modal-content">
-              <img src={selectedImage.src} alt={selectedImage.alt} />
-              <button className="modal-close" onClick={() => setSelectedImage(null)}>
-                ✕
-              </button>
-            </div>
+        {/* 하단: 추가 소개 섹션 */}
+        <div className="about-section section-bottom">
+          <h2 className="section-title">추가 정보</h2>
+          <div className="intro-text-box">
+            <p>추가 소개 내용...</p>
           </div>
-        )}
-      </main>
+        </div>
+      </div>
+    </main>
   );
 }
 
