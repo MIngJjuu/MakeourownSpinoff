@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background-color: #F4F4F4; 
+  overflow: hidden; /* 스크롤 방지 */
 }
 
 /* 상단 네비게이션 바 */
@@ -95,7 +96,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 280px;
+  height: 100vh; /* 전체 화면 높이 */
+  padding: 0 20px;
+  padding-top: 68px; /* navbar 높이만큼만 위에서 띄우기 */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* 메인 문구 */

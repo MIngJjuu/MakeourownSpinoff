@@ -54,7 +54,7 @@ function Navbar() {
 
       {/* 모바일 메뉴 */}
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-        <Link to="/AboutUs" className="mobile-menu-item" onClick={closeMenu}>About Us</Link>
+        <Link to="/about" className="mobile-menu-item" onClick={closeMenu}>About Us</Link>
         <Link to="/Gathering" className="mobile-menu-item" onClick={closeMenu}>Gathering</Link>
         <Link to="/Apply" className="mobile-menu-item" onClick={closeMenu}>Apply</Link>
       </div>
