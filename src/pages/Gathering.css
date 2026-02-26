@@ -100,19 +100,55 @@
   color: inherit;
 }
 
-/* Responsive */
+/* 반응형 */
 @media (max-width: 900px) {
   .gathering-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 24px 24px 48px;
+    grid-template-columns: repeat(2, 1fr); /* 모바일에서 2열로 고정 */
+    padding: 24px 20px 48px;
+    gap: 20px;
+  }
+
+  .gallery-card {
+    height: 300px;
+  }
+
+  .card-title h3 {
+    font-size: 18px;
+  }
+
+  .card-description h3 {
+    font-size: 20px;
+  }
+
+  .card-description p {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 500px) {
-  .gathering-title {
-    font-size: 2rem;
-  }
   .gathering-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* 작은 모바일에서도 2열 유지 */
+    gap: 16px;
+    padding: 24px 16px;
+  }
+
+  .gallery-card {
+    height: 280px;
+  }
+
+  .card-title h3 {
+    font-size: 16px;
+  }
+
+  .card-description h3 {
+    font-size: 18px;
+  }
+
+  .card-description p {
+    font-size: 13px;
+  }
+
+  .gathering-subtitle {
+    font-size: 1.1rem;
   }
 }

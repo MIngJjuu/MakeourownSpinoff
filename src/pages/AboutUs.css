@@ -7,47 +7,30 @@
   background-color: #f5f5f5;
 }
 
-/* 중단 2열 그리드 */
-.about-middle-row {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 0;
-}
-
 /* 각 섹션 공통 스타일 */
 .about-section {
-  padding: 30px 80px;
+  padding: 50px 80px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   color: #000000;
 }
 
 /* 상단: 동아리 소개글 */
 .section-intro {
-  min-height: auto; 
-  padding: 50px 80px;
+  min-height: auto;
 }
 
-/* 좌중단: 이미지/로고 */
-.section-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px; /* 슬라이드를 위해 패딩 제거 */
-}
-
-/* 하단: 추가 소개 섹션 */
-.section-bottom {
-  min-height: 300px;
-  padding: 50px 80px;
+/* 하단: 활동 갤러리 */
+.section-gallery {
+  background-color: #ffffff;
 }
 
 /* 섹션 제목 */
 .section-title {
   font-size: 28px;
   font-weight: 900;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 /* 소개글 텍스트 */
@@ -66,266 +49,163 @@
   margin-bottom: 0;
 }
 
-/* 슬라이드쇼 컨테이너 - 크기 제한 */
-.slideshow-container {
-  position: relative;
+/* ========== 활동 갤러리 ========== */
+.activity-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   width: 100%;
-  max-width: 500px; /* 최대 너비 제한 */
-  aspect-ratio: 4 / 3; /* 가로세로 비율 고정 */
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 슬라이드 제목 */
-.slide-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  padding: 40px 30px 30px;
-}
-
-.slide-title h3 {
-  color: #ffffff;
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 0.03em;
-}
-
-/* 인디케이터 (점) */
-.slide-indicators {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-
-.indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.indicator.active {
-  background: #ffffff;
-  width: 30px;
-  border-radius: 5px;
-}
-
-.indicator:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-/* ========== 활동 리스트 ========== */
-.activity-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.activity-list li {
-  margin-bottom: 24px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.activity-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  font-size: 20px;
-  line-height: 1;
-}
-
-.activity-list strong {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.activity-list p {
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ========== 하단 매거진 섹션 ========== */
-.bottom-content {
   max-width: 1400px;
   margin: 0 auto;
-  width: 100%;
 }
 
-.magazine-cards-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  width: 100%;
-}
-
-/* 정보 카드 */
-.info-card {
-  display: flex;
-  flex-direction: column;
+/* 활동 카드 */
+.activity-card {
+  position: relative;
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  text-decoration: none;
   cursor: pointer;
+  aspect-ratio: 3 / 4;
+  text-decoration: none;
 }
 
-.info-card:hover {
+.activity-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.info-card-image {
+/* 카드 앞면 (기본 상태) */
+.activity-front {
+  position: absolute;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #e0e0e0;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.info-card-image img {
+.activity-front.hide {
+  opacity: 0;
+}
+
+.activity-image {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+
+.activity-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.info-card:hover .info-card-image img {
+.activity-card:hover .activity-image img {
   transform: scale(1.05);
 }
 
-.info-card-content {
-  padding: 24px;
+.activity-title {
+  height: 30%;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 16px;
 }
 
-.info-card-title {
-  font-size: 18px;
+.activity-title h3 {
+  font-size: 16px;
   font-weight: 700;
   color: #333;
   margin: 0;
+  text-align: center;
 }
 
-.info-card-desc {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
+/* 카드 뒷면 (호버 상태) */
+.activity-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #c9a882, #a68a64);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.activity-back.show {
+  opacity: 1;
+}
+
+/* CTA 카드 뒷면 (빨간색) */
+.activity-back-cta {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.activity-description {
+  text-align: center;
+  color: #000000;
+}
+
+.activity-back-cta .activity-description {
+  color: #ffffff;
+}
+
+.activity-description h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.activity-description p {
+  font-size: 13px;
+  line-height: 1.6;
   margin: 0;
 }
 
-/* CTA 카드 강조 */
-.info-card-cta {
-  background: linear-gradient(135deg, #fff5f5, #ffffff);
-  border: 2px solid #e74c3c;
-}
-
-.info-card-cta .info-card-title {
-  color: #e74c3c;
-}
-
-.info-card-cta:hover {
-  background: linear-gradient(135deg, #ffefef, #fff5f5);
-  border-color: #c0392b;
-}
-
 /* ========== 반응형 ========== */
-@media (max-width: 1024px) {
-  .about-middle-row {
+@media (max-width: 1200px) {
+  .activity-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .activity-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .about-section {
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .activity-gallery {
     grid-template-columns: 1fr;
   }
 
-  .section-left {
-    min-height: 400px;
-  }
-
-  .magazine-cards-wrapper {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .info-card:last-child {
-    grid-column: 1 / -1;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
   .about-section {
     padding: 30px 24px;
   }
 
-  .section-intro,
-  .section-bottom {
-    padding: 40px 24px;
+  .section-title {
+    font-size: 24px;
   }
 
-  .slide-title h3 {
-    font-size: 22px;
+  .activity-description h3 {
+    font-size: 14px;
   }
 
-  .slide-title {
-    padding: 30px 20px 20px;
-  }
-
-  .magazine-cards-wrapper {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .info-card:last-child {
-    grid-column: auto;
-    max-width: none;
-  }
-
-  .info-card-content {
-    padding: 20px;
-  }
-
-  .info-card-title {
-    font-size: 16px;
-  }
-
-  .info-card-desc {
-    font-size: 13px;
+  .activity-description p {
+    font-size: 12px;
   }
 }

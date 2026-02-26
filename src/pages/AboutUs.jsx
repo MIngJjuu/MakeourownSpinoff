@@ -1,27 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './AboutUs.css';
 
 function AboutUs() {
-  // 슬라이드 자동 넘김을 위한 state
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [hoveredId, setHoveredId] = useState(null);
 
-  const slides = [
-    { id: 1, image: '/images/activity1.jpg', title: '정기 상영회' },
-    { id: 2, image: '/images/activity2.jpg', title: '발제 및 토론' },
-    { id: 3, image: '/images/activity3.jpg', title: 'MT & 친목' },
-    { id: 4, image: '/images/activity4.jpg', title: '번개 모임' },
+  const activities = [
+    { 
+      id: 1, 
+      image: '/images/activity_ot.jpg', 
+      title: 'OT',
+      description: '학기 초, 모든 회원들이 모여 OT를 진행합니다.(참여가 어려울 시 활동이 제한될 수 있습니다.)',
+      type: 'activity'
+    },
+    { 
+      id: 2, 
+      image: '/images/activity_presentation1.jpg', 
+      title: '발제 및 토론',
+      description: '발제자의 영화 발제자료를 기반으로 월요일 19~22시까지 토론을 진행합니다.',
+      type: 'activity'
+    },
+    { 
+      id: 3, 
+      image: '/images/activity_presentation2.jpg', 
+      title: '발제 및 토론',
+      description: '영화에 대한 깊이 있는 분석과 토론을 통해 다양한 관점을 공유합니다.',
+      type: 'activity'
+    },
+    { 
+      id: 4, 
+      image: '/images/activity_mt.jpg', 
+      title: 'MT',
+      description: '영화 게임 등을 통해 부원들과 즐거운 시간을 보냅니다.',
+      type: 'activity'
+    },
+    { 
+      id: 5, 
+      image: '/images/activity_lightning.jpg', 
+      title: '번개모임',
+      description: 'GV, 특별 상영회 등 함께하고 싶은 순간을 부원들과 함께할 수 있습니다.',
+      type: 'activity'
+    },
+    { 
+      id: 6, 
+      image: '/images/activity_closing.jpg', 
+      title: '종강총회',
+      description: '모든 발제 종료 후 동아리원들과 함께하는 종강총회를 진행합니다.',
+      type: 'activity'
+    },
+    { 
+      id: 7, 
+      image: '/images/5th_magazine.png', 
+      title: '웹매거진',
+      description: '웹매거진을 발행하여 한 기수 동안의 활동을 기록하고 공유합니다.',
+      type: 'magazine',
+      link: 'https://drive.google.com/file/d/18Wun2QRtT2tsKKCFk-wgP2698ck27qCb/view?usp=sharing'
+    },
+    { 
+      id: 8, 
+      image: '/images/gathering-preview.jpg', 
+      title: '더 많은 활동 보러가기',
+      description: '클릭 시 6기 발제 게시물로 이동됩니다.',
+      type: 'cta',
+      link: '/gathering'
+    },
   ];
 
-  // 자동 슬라이드 (3초마다)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  const handleClick = (activity) => {
+    if (activity.type === 'magazine' && activity.link) {
+      window.open(activity.link, '_blank');
+    }
+  };
 
   return (
     <main className="about-main">
@@ -46,114 +96,65 @@ function AboutUs() {
           </div>
         </div>
 
-        {/* 중단 2열 */}
-        <div className="about-middle-row">
-          {/* 좌중단: 슬라이드 이미지 */}
-          <div className="about-section section-left">
-            <div className="slideshow-container">
-              {slides.map((slide, index) => (
-                <div
-                  key={slide.id}
-                  className={`slide ${index === currentSlide ? 'active' : ''}`}
+        {/* 하단: 활동 갤러리 */}
+        <div className="about-section section-gallery">
+          <h2 className="section-title">활동 소개</h2>
+          <div className="activity-gallery">
+            {activities.map((activity) => (
+              activity.type === 'cta' ? (
+                <Link
+                  key={activity.id}
+                  to={activity.link}
+                  className="activity-card activity-card-cta"
+                  onMouseEnter={() => setHoveredId(activity.id)}
+                  onMouseLeave={() => setHoveredId(null)}
                 >
-                  <img src={slide.image} alt={slide.title} />
-                  <div className="slide-title">
-                    <h3>{slide.title}</h3>
+                  {/* 기본 상태: 이미지 + 제목 */}
+                  <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
+                    <div className="activity-image">
+                      <img src={activity.image} alt={activity.title} />
+                    </div>
+                    <div className="activity-title">
+                      <h3>{activity.title}</h3>
+                    </div>
+                  </div>
+
+                  {/* 호버 상태: 빨간색 배경 + 설명 */}
+                  <div className={`activity-back activity-back-cta ${hoveredId === activity.id ? 'show' : ''}`}>
+                    <div className="activity-description">
+                      <h3>{activity.title}</h3>
+                      <p>{activity.description}</p>
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <div
+                  key={activity.id}
+                  className="activity-card"
+                  onClick={() => handleClick(activity)}
+                  onMouseEnter={() => setHoveredId(activity.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  {/* 기본 상태: 이미지 + 제목 */}
+                  <div className={`activity-front ${hoveredId === activity.id ? 'hide' : ''}`}>
+                    <div className="activity-image">
+                      <img src={activity.image} alt={activity.title} />
+                    </div>
+                    <div className="activity-title">
+                      <h3>{activity.title}</h3>
+                    </div>
+                  </div>
+
+                  {/* 호버 상태: 베이지색 배경 + 설명 */}
+                  <div className={`activity-back ${hoveredId === activity.id ? 'show' : ''}`}>
+                    <div className="activity-description">
+                      <h3>{activity.title}</h3>
+                      <p>{activity.description}</p>
+                    </div>
                   </div>
                 </div>
-              ))}
-
-              {/* 인디케이터 (점) */}
-              <div className="slide-indicators">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`indicator ${index === currentSlide ? 'active' : ''}`}
-                    onClick={() => setCurrentSlide(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 우중단: 활동 내용 */}
-          <div className="about-section section-right">
-            <h2 className="section-title">활동 소개</h2>
-            <ul className="activity-list">
-              <li>
-                <strong>OT</strong>
-                <p>학기 초, 모든 회원들이 모여 OT를 진행합니다.(참여가 어려울 시 활동이 제한될 수 있습니다.)</p>
-              </li>
-              <li>
-                <strong>발제 및 토론</strong>
-                <p>발제자의 영화 발제자료를 기반으로 월요일 19~22시까지 토론을 진행합니다.</p>
-              </li>
-              <li>
-                <strong>MT</strong>
-                <p>영화 게임 등을 통해 부원들과 즐거운 시간을 보냅니다.</p>
-              </li>
-              <li>
-                <strong>번개모임</strong>
-                <p>GV, 특별 상영회 등 함께하고 싶은 순간을 부원들과 함께할 수 있습니다.</p>
-              </li>
-              <li>
-                <strong>종강총회</strong>
-                <p>모든 발제 종료 후 동아리원들과 함께하는 종강총회를 진행합니다.</p>
-              </li>
-              <li>
-                <strong>매거진 발행</strong>
-                <p>웹매거진을 발행하여 한 기수 동안의 활동을 기록하고 공유합니다.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* 하단: 추가 정보 섹션 */}
-        <div className="about-section section-bottom">
-          <h2 className="section-title">활동 확인하기</h2>
-          
-          <div className="bottom-content">
-            <div className="magazine-cards-wrapper">
-              <a 
-                href="https://drive.google.com/file/d/18Wun2QRtT2tsKKCFk-wgP2698ck27qCb/view?usp=sharing" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="info-card"
-              >
-                <div className="info-card-image">
-                  <img src="/images/5th_magazine.png" alt="5기 매거진" />
-                </div>
-                <div className="info-card-content">
-                  <h3 className="info-card-title">5기 매거진 보러가기</h3>
-                  <p className="info-card-desc">5기 활동 기록과 발제 내용을 담은 매거진입니다.</p>
-                </div>
-              </a>
-              
-              <a 
-                href="https://magazine-link-2.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="info-card"
-              >
-                <div className="info-card-image">
-                  <img src="/images/magazine2.jpg" alt="6기 매거진" />
-                </div>
-                <div className="info-card-content">
-                  <h3 className="info-card-title">6기 매거진</h3>
-                  <p className="info-card-desc">6기 매거진은 업데이트 예정입니다.</p>
-                </div>
-              </a>
-
-              <Link to="/gathering" className="info-card info-card-cta">
-                <div className="info-card-image">
-                  <img src="/images/gathering-preview.jpg" alt="발제 게시물" />
-                </div>
-                <div className="info-card-content">
-                  <h3 className="info-card-title">발제 게시물 보러가기</h3>
-                  <p className="info-card-desc">회원들의 영화 발제를 둘러보세요.</p>
-                </div>
-              </Link>
-            </div>
+              )
+            ))}
           </div>
         </div>
       </div>
