@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './AboutUs.css';
-import { Images } from 'lucide-react';
 
 function AboutUs() {
   const [hoveredId, setHoveredId] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-// 1. 슬라이드 당 카드 개수를 상태로 관리 (기본값 4)
   const [cardsPerSlide, setCardsPerSlide] = useState(4);
+  const [sliderWidth, setSliderWidth] = useState(0);
+  const sliderRef = useRef(null);
 
   const activities = [
     { id: 1, image: '/images/OT.jpg', title: 'OT', description: '학기 초, 모든 회원들이 모여 OT를 진행합니다.(참여가 어려울 시 활동이 제한될 수 있습니다.)', type: 'activity' },
@@ -21,24 +21,34 @@ function AboutUs() {
     { id: 8, image: '/images/logo_2.png', title: '더 많은 활동 보러가기', description: '클릭 시 6기 발제 게시물로 이동됩니다.', type: 'cta', link: '/gathering' },
   ];
 
-// 2. 화면 너비에 따라 cardsPerSlide 변경하는 Effect
+  // 화면 너비에 따라 카드 수 및 슬라이더 너비 업데이트
   useEffect(() => {
-    const handleResize = () => {
+    const update = () => {
       if (window.innerWidth <= 900) {
         setCardsPerSlide(2);
       } else {
         setCardsPerSlide(4);
       }
-      // 화면 크기가 변할 때 인덱스 오류 방지를 위해 첫 슬라이드로 리셋 (선택사항)
       setCurrentSlide(0);
+
+      if (sliderRef.current) {
+        setSliderWidth(sliderRef.current.offsetWidth);
+      }
     };
 
-    handleResize(); // 초기 실행
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
-  // 3. 변경된 cardsPerSlide를 기준으로 슬라이드 나누기
+  // sliderRef 마운트 후 너비 측정
+  useEffect(() => {
+    if (sliderRef.current) {
+      setSliderWidth(sliderRef.current.offsetWidth);
+    }
+  }, [sliderRef.current]);
+
+  // 슬라이드 나누기
   const slides = [];
   for (let i = 0; i < activities.length; i += cardsPerSlide) {
     slides.push(activities.slice(i, i + cardsPerSlide));
@@ -84,6 +94,7 @@ function AboutUs() {
   return (
     <main className="about-main">
       <div className="about-grid">
+
         {/* 상단: 소개글 */}
         <div className="about-section section-intro">
           <h2 className="section-title">스핀오프는요</h2>
@@ -108,30 +119,40 @@ function AboutUs() {
         <div className="about-section section-gallery">
           <h2 className="section-title">활동 소개</h2>
 
-          {/* 슬라이더 래퍼 */}
-          <div className="gallery-slider-wrapper">
-            <div
-              className="activity-gallery"
-              style={{ transform: `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 24}px))` }}
-            >
-              {slides.map((slideCards, slideIndex) => (
-                <div key={slideIndex} className="gallery-slide">
-                  {slideCards.map((activity) => renderCard(activity))}
-                </div>
+          {/* 슬라이더 */}
+          <div className="gallery-slider-outer">
+            <div className="gallery-slider-wrapper" ref={sliderRef}>
+              <div
+                className="activity-gallery"
+                style={{
+                  width: `${slides.length * sliderWidth}px`,
+                  transform: `translateX(-${currentSlide * sliderWidth}px)`
+                }}
+              >
+                {slides.map((slideCards, slideIndex) => (
+                  <div
+                    key={slideIndex}
+                    className="gallery-slide"
+                    style={{ width: `${sliderWidth}px` }}
+                  >
+                    {slideCards.map((activity) => renderCard(activity))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* dot 버튼 */}
+            <div className="gallery-dots">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`gallery-dot ${currentSlide === index ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                />
               ))}
             </div>
           </div>
 
-          {/* dot 버튼 */}
-          <div className="gallery-dots">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`gallery-dot ${currentSlide === index ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(index)}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </main>
